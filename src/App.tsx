@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import RootLayout from './components/RootLayout';
+import BlogLayout from './pages/BlogLayout';
+import BlogPostsPage from './pages/BlogPosts';
+import NewPostPage from './pages/NewPost';
+import PostDetailPage from './pages/PostDetail';
+import WelcomePage from './pages/WelcomePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <RootLayout>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/blog" element={<BlogLayout />}>
+            <Route index element={<BlogPostsPage />} />
+            <Route path=":id" element={<PostDetailPage />} />
+          </Route>
+          <Route path="/blog/new" element={<NewPostPage />} />
+        </Routes>
+      </RootLayout>
+    </BrowserRouter>
   );
 }
 
