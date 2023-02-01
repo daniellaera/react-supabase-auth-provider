@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Loader, Stack } from 'rsuite';
 import { getPost } from '../api/posts';
 
 import BlogPost from '../components/BlogPost';
@@ -28,11 +29,11 @@ function PostDetailPage() {
   }, [id]);
 
   return (
-    <>
-      {isLoading && <p>Loading post...</p>}
+    <Stack direction="column" spacing={20} alignItems="center" style={{ marginTop: 30 }}>
+      {isLoading && <Loader content="Loading..." vertical />}
       {error && <p>{error.message}</p>}
       {!error && post && <BlogPost title={post.title} text={post.body} />}
-    </>
+    </Stack>
   );
 }
 

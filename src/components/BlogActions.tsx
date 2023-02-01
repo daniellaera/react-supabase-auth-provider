@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-
-import classes from '../styles/BlogActions.module.css';
+import { Button , Stack} from 'rsuite';
 
 function BlogActions() {
   return (
-    <div className={classes.actions}>
-      <Link className={classes.button} to="/blog/new">Add Post</Link>
-    </div>
+    <Stack direction="column" spacing={20} alignItems="center" style={{ marginTop: 30 }}>
+      <Button to="/blog/new" as={Link} appearance="primary">Add Post</Button>
+    </Stack>
   );
 }
 

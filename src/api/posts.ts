@@ -1,7 +1,7 @@
 export async function getPosts() {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
     if (!response.ok) {
-      throw { message: 'Failed to fetch posts.', status: 500 };
+      throw new Error("Failed to fetch posts");
     }
     return response.json();
   }
@@ -11,14 +11,14 @@ export async function getPosts() {
       'https://jsonplaceholder.typicode.com/posts/' + id
     );
     if (!response.ok) {
-      throw { message: 'Failed to fetch post.', status: 500 };
+      throw new Error("Failed to fetch posts");
     }
     return response.json();
   }
   
   export async function savePost(post: any) {
     if (post.title.trim().length < 5 || post.body.trim().length < 10) {
-      throw { message: 'Invalid input data provided.', status: 422 };
+      throw new Error('Invalid input data provided.');
     }
   
     const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -30,7 +30,7 @@ export async function getPosts() {
     });
   
     if (!response.ok) {
-      throw { message: 'Could not save post.', status: 500 };
+      throw new Error("Could not save post");
     }
   }
   

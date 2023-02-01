@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Stack } from 'rsuite';
 import { savePost } from '../api/posts';
 
 import NewPostForm from '../components/NewPostForm';
@@ -31,14 +32,14 @@ function NewPostPage() {
   }
 
   return (
-    <>
+    <Stack direction="column" spacing={20} alignItems="center" style={{ marginTop: 30 }}>
       {error && <p>{error.message}</p>}
       <NewPostForm
         onCancel={cancelHandler}
         onSubmit={submitHandler}
         submitting={isSubmitting}
       />
-    </>
+    </Stack>
   );
 }
 

@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
-
-import classes from '../styles/Posts.module.css';
+import { List, FlexboxGrid } from 'rsuite';
 
 function Posts({ blogPosts }: any) {
   return (
-    <ul className={classes.posts}>
+    <List>
       {blogPosts.map((post: any) => (
-        <li key={post.id}>
-          <Link to={post.id.toString()}>
-            <h2>{post.title}</h2>
+        <List.Item key={post.id}>
+          <Link to={post.id.toString()} style={{ textDecoration: 'none', color: 'inherit'}}>
+            <h3>{post.title}</h3>
           </Link>
-        </li>
+        </List.Item>
       ))}
-    </ul>
+    </List>
   );
 }
 

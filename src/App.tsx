@@ -5,21 +5,45 @@ import BlogPostsPage from './pages/BlogPosts';
 import NewPostPage from './pages/NewPost';
 import PostDetailPage from './pages/PostDetail';
 import WelcomePage from './pages/WelcomePage';
+import './App.css';
+import { CustomProvider } from 'rsuite';
+import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './hooks/Auth';
 
 function App() {
   return (
-    <BrowserRouter>
-      <RootLayout>
-        <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/blog" element={<BlogLayout />}>
-            <Route index element={<BlogPostsPage />} />
-            <Route path=":id" element={<PostDetailPage />} />
-          </Route>
-          <Route path="/blog/new" element={<NewPostPage />} />
-        </Routes>
-      </RootLayout>
-    </BrowserRouter>
+    <CustomProvider theme="dark">
+      <BrowserRouter>
+        <AuthProvider>
+          <RootLayout>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <WelcomePage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="blog"
+                element={
+                  <ProtectedRoute>
+                    <BlogLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<BlogPostsPage />} />
+                <Route path=":id" element={<PostDetailPage />} />
+              </Route>
+              <Route path="/blog/new" element={<NewPostPage />} />
+            </Routes>
+          </RootLayout>
+        </AuthProvider>
+      </BrowserRouter>
+    </CustomProvider>
   );
 }
 

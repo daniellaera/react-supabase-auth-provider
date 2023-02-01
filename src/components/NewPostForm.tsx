@@ -1,8 +1,11 @@
-import classes from '../styles/NewPostForm.module.css';
+import { forwardRef } from 'react';
+import { Form, ButtonToolbar, Button, Input } from 'rsuite';
+
+const Textarea = forwardRef((props, ref: any) => <Input {...props} as="textarea" ref={ref} />);
 
 function NewPostForm({ onCancel, onSubmit, submitting }: any) {
   return (
-    <form className={classes.form} onSubmit={onSubmit}>
+    /* <form className={classes.form} onSubmit={onSubmit}>
       <fieldset>
         <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" required minLength={5} />
@@ -23,8 +26,27 @@ function NewPostForm({ onCancel, onSubmit, submitting }: any) {
       <button disabled={submitting}>
         {submitting ? 'Submitting...' : 'Create Post'}
       </button>
-    </form>
-  );
+    </form> */ 
+    <Form >
+    <Form.Group controlId="title">
+      <Form.ControlLabel>title</Form.ControlLabel>
+      <Form.Control name="title" />
+      <Form.HelpText>title is required</Form.HelpText>
+    </Form.Group>
+    <Form.Group controlId="content">
+      <Form.ControlLabel>content</Form.ControlLabel>
+      <Form.Control name="content" />
+      <Form.HelpText>content is required</Form.HelpText>
+    </Form.Group>
+    <Form.Group>
+      <ButtonToolbar>
+        <Button type='submit' appearance="primary" disabled={submitting}>{submitting ? 'Submitting...' : 'Create Post'}</Button>
+        <Button appearance="default" onClick={onCancel} disabled={submitting}>Cancel</Button>
+      </ButtonToolbar>
+    </Form.Group>
+  </Form>
+    )
+  
 }
 
 export default NewPostForm;

@@ -6,7 +6,7 @@ function RootLayout({ children }: {children: ReactNode}) {
     <>
       <MainNavigation />
       <main>{children}</main>
-    </>
+      </>
   );
 }
 
