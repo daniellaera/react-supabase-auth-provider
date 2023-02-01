@@ -35,7 +35,7 @@ function Login() {
   const Login = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabaseClient.auth.signInWithPassword({
+      const { error } = await supabaseClient.auth.signInWithPassword({
         email,
         password
       })
@@ -64,7 +64,7 @@ function Login() {
           <FlexboxGrid.Item colspan={12}>
             {
               !session ? <>
-                <Panel header={<h3>Login</h3>} bordered>
+                <Panel header={<h3>Login</h3>} shaded bordered style={{ width: 500, margin: '0 auto'}}>
                   <Form fluid>
                     <Form.Group>
                       <Form.ControlLabel>Username or email address</Form.ControlLabel>

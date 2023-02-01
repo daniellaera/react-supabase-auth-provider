@@ -3,8 +3,8 @@ import { Panel, Stack } from 'rsuite';
 function WelcomePage() {
   return (
     <Stack direction="column" spacing={20} alignItems="center" style={{ marginTop: 30 }}>
-      <Panel shaded bordered bodyFill style={{ display: 'inline-block', width: 240 }}>
-        <img src="https://loremflickr.com/240/240" height="240" />
+      <Panel shaded bordered bodyFill style={{ display: 'inline-block'}}>
+        <img src="https://loremflickr.com/640/640" height="auto" alt='' />
         <Panel header="RSUITE">
           <p>
             <small>
